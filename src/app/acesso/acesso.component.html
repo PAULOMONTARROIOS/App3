@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div [@animacao-banner]="estadoBanner" class="col-sm-6 d-flex justify-content-end">
+      <app-banner></app-banner>
+    </div>
+
+    <div 
+      class="col-sm-6 d-flex justify-content-start"
+      [@animacao-painel]="estadoPainel" 
+      (@animacao-painel.start)="inicioDaAnimacao()"
+      (@animacao-painel.done)="fimDaAnimacao()" >
+      
+      <div *ngIf="cadastro; else formLogin">
+        <app-cadastro (exibirPainel)="exibirPainel($event)"></app-cadastro>
+      </div>
+      
+      <ng-template #formLogin>
+        <app-login (exibirPainel)="exibirPainel($event)"></app-login>
+      </ng-template>
+
+    </div>
+    
+  </div>
+</div>
